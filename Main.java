@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import hms.doctor.DoctorList;
 import hms.menus.DoctorMenu;
 import hms.menus.PatientMenu;
 import hms.util.Line;
@@ -8,6 +9,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         try {
+            DoctorList.initialize();
+            System.out.println(DoctorList.getDoctorList().get(0));
             final int endChoice = 0;
             int choice = endChoice;
             do {
@@ -16,7 +19,7 @@ public class Main {
                 System.out.println("2 -> Patient Panel");
                 System.out.println("0 -> Exit");
                 Line.horizontalLine();
-                System.out.println("Please enter any one :");
+                System.out.print("Please enter any one :");
                 choice = sc.nextInt();
                 switch (choice) {
                     case 1:
