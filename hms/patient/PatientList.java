@@ -8,9 +8,9 @@ import hms.util.Line;
 public class PatientList {
     private static ArrayList<Patient> list = new ArrayList<>();
 
-    public static boolean registerPatient(){
+    public static boolean registerPatient() {
         try {
-            Scanner sc  = new Scanner(System.in);
+            Scanner sc = new Scanner(System.in);
             Line.horizontalLine("upper");
             System.out.println("Pateint Registration");
             Line.horizontalLine();
@@ -21,6 +21,7 @@ public class PatientList {
             Patient p = new Patient();
             p.setEmail(email);
             p.setPassword(password);
+            p.setPid(list.size() + 1);
             list.add(p);
             return true;
         } catch (Exception e) {

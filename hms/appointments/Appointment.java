@@ -1,8 +1,8 @@
 package hms.appointments;
 
-
 public class Appointment {
     private int aid;
+    private int pid;
     private String name;
     private String issue;
     private String gender;
@@ -10,7 +10,9 @@ public class Appointment {
     private String comment;
     private String a_date;
 
-    public Appointment(int aid, String name, String issue, String gender, int age, String comment, String a_date) {
+    public Appointment(int pid, int aid, String name, String issue, String gender, int age, String comment,
+            String a_date) {
+        this.pid = pid;
         this.aid = aid;
         this.name = name;
         this.issue = issue;
@@ -20,6 +22,13 @@ public class Appointment {
         this.a_date = a_date;
     }
 
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
 
     // setters and getters
     public int getAid() {

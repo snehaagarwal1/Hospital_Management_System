@@ -1,34 +1,58 @@
 package hms.appointments;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
+import hms.db.LocalDB;
 import hms.util.Label;
 
 public class AppointmentList {
     private static ArrayList<Appointment> list = new ArrayList<>();
 
-    public static boolean add_appointment() {
-        Scanner sc = new Scanner(System.in);
-        Label.h_label("Fill details to book an appointment");
-        int aid = list.size();
-        System.out.print("Enter name : ");
-        String name = sc.nextLine();
-        System.out.print("Enter your age : ");
-        int age = sc.nextInt();
-        System.out.print("Enter your gender (Male / Female) : ");
-        String gender = sc.nextLine();
-        System.out.print("Type your Isuue : ");
-        String issue = sc.nextLine();
-        String comment = "No comment";
-        System.out.print("Any Comment for doctor ? (optional) : ");
-        comment = sc.nextLine();
-        System.out.print("Enter appointment date (DD/MM/YYYY) : ");
-        String a_date = sc.nextLine();
-        Appointment a = new Appointment(aid ,name,issue ,gender,age ,comment ,a_date);
-        list.add(a);
+    public static boolean book_appointment() {
+        try {
+            Scanner sc = new Scanner(System.in);
+            Label.h_label("Fill details to book an appointment");
+            int aid = list.size() + 101;
+            System.out.print("Enter name : ");
+            String name = sc.nextLine();
+            System.out.print("Enter your age : ");
+            int age = sc.nextInt();
+            System.out.print("Enter your gender (Male / Female) : ");
+            sc.nextLine();
+            String gender = sc.nextLine();
+            System.out.print("Type your Isuue : ");
+            String issue = sc.nextLine();
+            String comment = "No comment";
+            System.out.print("Any Comment for doctor ? (optional) : ");
+            comment = sc.nextLine();
+            System.out.print("Enter appointment date (DD/MM/YYYY) : ");
+            String a_date = sc.nextLine();
+            int pid = LocalDB.getPatientData().getPid();
+            Appointment a = new Appointment(pid, aid, name, issue, gender, age, comment, a_date);
+            list.add(a);
 
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
 
-        return false;
+    }
+
+    public static Appointment view_AppointmentByPatient(int pid) {
+
+        Iterator<Appointment> itr = list.iterator();
+        while (itr.hasNext()) {
+            return itr.next();
+
+        }
+        return null;
+
+    }
+
+    public static ArrayList<Appointment> getAppointment() {
+        return list;
     }
 }
