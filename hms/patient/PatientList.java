@@ -18,7 +18,6 @@ public class PatientList {
             String email = sc.nextLine();
             System.out.print("Enter your password : ");
             String password = sc.nextLine();
-            sc.close();
             Patient p = new Patient();
             p.setEmail(email);
             p.setPassword(password);
