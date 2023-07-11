@@ -5,7 +5,6 @@ import java.util.Scanner;
 import hms.appointments.Appointment;
 import hms.appointments.AppointmentList;
 import hms.db.LocalDB;
-import hms.patient.PatientList;
 import hms.util.Label;
 import hms.util.Line;
 
