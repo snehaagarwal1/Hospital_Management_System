@@ -1,5 +1,9 @@
 package hms.appointments;
 
+import java.util.HashMap;
+
+import hms.util.State;
+
 public class Appointment {
     private int aid;
     private int pid;
@@ -9,17 +13,28 @@ public class Appointment {
     private int age;
     private String comment;
     private String a_date;
+    private HashMap<String,String> medicine = new HashMap<>();
+    private State status = State.PENDING;
 
-    public Appointment(int pid, int aid, String name, String issue, String gender, int age, String comment,
-            String a_date) {
+    public Appointment(int pid, int aid, String name, String issue, String gender, int age, String comment,String a_date) {
         this.pid = pid;
         this.aid = aid;
-        this.name = name;
+        this.name = name; 
         this.issue = issue;
         this.gender = gender;
         this.age = age;
         this.comment = comment;
         this.a_date = a_date;
+    }
+
+    // setters and getters
+    
+    public State getStatus() {
+        return status;
+    }
+
+    public void setStatus(State status) {
+        this.status = status;
     }
 
     public int getPid() {
@@ -30,7 +45,6 @@ public class Appointment {
         this.pid = pid;
     }
 
-    // setters and getters
     public int getAid() {
         return aid;
     }

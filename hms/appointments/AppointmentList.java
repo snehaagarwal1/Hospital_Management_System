@@ -12,6 +12,7 @@ public class AppointmentList {
 
     public static boolean book_appointment() {
         try {
+            
             Scanner sc = new Scanner(System.in);
             Label.h_label("Fill details to book an appointment");
             int aid = list.size() + 101;
@@ -41,17 +42,37 @@ public class AppointmentList {
 
     }
 
-    public static Appointment view_AppointmentByPatient(int pid) {
-
+    public static Appointment get_AppointmentByPatient() {
         Iterator<Appointment> itr = list.iterator();
         while (itr.hasNext()) {
-            return itr.next();
-
+            Appointment a = itr.next();
+            if(LocalDB.getPatientData().getPid() == a.getPid()){
+                return a;
+            }
         }
         return null;
 
     }
+    public static boolean hasBookingByPatient() {
+        Iterator<Appointment> itr = list.iterator();
+        while (itr.hasNext()) {
+            Appointment a = itr.next();
+            if(LocalDB.getPatientData().getPid() == a.getPid()){
+                return true;
+            }
+        }
+        return false;
 
+    }
+    public static boolean cancel_appointmentByPatient(){
+        for(int i = 0 ; i<list.size() ;i++ ){
+            if(LocalDB.getPatientData().getPid() == list.get(i).getPid()){
+                list.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
     public static ArrayList<Appointment> getAppointment() {
         return list;
     }

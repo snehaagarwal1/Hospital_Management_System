@@ -40,7 +40,8 @@ public class Main {
                         System.out.println("Invalid choice try again");
                 }
             } while (choice != endChoice);
-        } catch (Exception ex) {
+        } 
+        catch (NullPointerException ex) {
             System.out.println("Something went wrong : " + ex.getMessage());
         } finally {
             sc.close();

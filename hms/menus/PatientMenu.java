@@ -18,39 +18,57 @@ public class PatientMenu implements Menuable {
             System.out.println("1 -> Book Appointment");
             System.out.println("2 -> View Appointment");
             System.out.println("3 -> Cancel Appointment");
-            System.out.println("4 -> View Medicines");
-            System.out.println("4 -> Logout");
-            System.out.println("0 -> Exit");
+            // System.out.println("4 -> View Medicines");
+            System.out.println("0 -> Logout");
             Line.horizontalLine();
             System.out.print("Please enter any one :");
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    if (AppointmentList.book_appointment()) {
-                        System.out.println("Appointment booked Successfully");
+
+                    if (!AppointmentList.hasBookingByPatient()) {
+                        if (AppointmentList.book_appointment()) {
+                            Label.h_label("Appointment booked Successfully");
+                        } else {
+                            Label.h_label("failed to book an appointment");
+                        }
                     } else {
-                        System.out.println("failed to book an appointment");
+                        Label.h_label("Sorry you already booked an appointment");
                     }
+
                     break;
 
                 case 2:
-                    Appointment ap = AppointmentList.view_AppointmentByPatient(LocalDB.getPatientData().getPid());
-                    Label.h_label("Appointment Details");
-                    System.out.println("Patient Id : " + ap.getPid());
-                    System.out.println("Appointment Id : " + ap.getAid());
-                    System.out.println("Patient Name : " + ap.getName());
-                    System.out.println("Patient Gender : " + ap.getGender());
-                    System.out.println("Patient Age: " + ap.getAge());
-                    System.out.println("Appointment Date : " + ap.getA_date());
-                    System.out.println("Patient Issue : " + ap.getIssue());
-                    System.out.println("Comment: " + ap.getComment());
+                    Appointment ap = AppointmentList.get_AppointmentByPatient();
+                    if (ap != null) {
+                        Label.h_label("Appointment Details");
+                        System.out.println("Patient Id : " + ap.getPid());
+                        System.out.println("Appointment Id : " + ap.getAid());
+                        System.out.println("Patient Name : " + ap.getName());
+                        System.out.println("Patient Gender : " + ap.getGender());
+                        System.out.println("Patient Age: " + ap.getAge());
+                        System.out.println("Appointment Date : " + ap.getA_date());
+                        System.out.println("Patient Issue : " + ap.getIssue());
+                        System.out.println("Comment: " + ap.getComment());
+                    } else {
+                        Label.h_label("Sorry No appointmemnts booked.");
+                    }
 
                     break;
-
+                case 3:
+                    if (AppointmentList.cancel_appointmentByPatient()) {
+                        Label.h_label("Appointment cancelled Successfully");
+                    } else {
+                        Label.h_label("No Appointmenrts to cancel");
+                    }
+                    break;
                 case endChoice:
+                    LocalDB.logoutPatient(); 
+                    System.out.println("Logout Successfully");
                     break;
 
                 default:
+                    Line.horizontalLine("upper");
                     System.out.println("Invalid choice try again");
             }
         } while (choice != endChoice);
