@@ -21,8 +21,7 @@ public class DoctorMenu implements Menuable {
                 System.out.println("1 -> Show Appointments");
                 System.out.println("2 -> Update Appointment");
                 System.out.println("3 -> Put Mediceines");
-                System.out.println("4 -> Logout");
-                System.out.println("0 -> Exit");
+                System.out.println("0 -> Logout");
                 Line.horizontalLine();
                 System.out.print("Please enter any one :");
                 choice = sc.nextInt();
@@ -57,8 +56,7 @@ public class DoctorMenu implements Menuable {
 
                         break;
 
-                    case endChoice:
-                        break;
+                    case endChoice:LocalDB.logoutDoctor(); break;
 
                     default:
                         System.out.println("Invalid choice try again");

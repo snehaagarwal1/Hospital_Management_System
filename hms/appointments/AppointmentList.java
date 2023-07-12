@@ -134,8 +134,8 @@ public class AppointmentList {
                     for (int i = 1; true; i++) {
                         System.out.println("Medicine no." + i);
                         System.out.print("Medicine Name : ");
-                        String mdcnName = sc.nextLine();
                         sc.nextLine();
+                        String mdcnName = sc.nextLine();
                         System.out.print("Medicine Timetable : ");
                         String mdcnTime = sc.nextLine();
                         ap.setMedicine(mdcnName, mdcnTime);
@@ -161,12 +161,14 @@ public class AppointmentList {
             if (ap.getMedicine().size() != 0) {
                 Label.h_label("Medicines : ");
                 Iterator<Map.Entry<String, String>> itr = ap.getMedicine().entrySet().iterator();
+                int i = 1;
                 while (itr.hasNext()) {
                     Map.Entry<String, String> temp = itr.next();
-
-                    System.out.println("Medicine Name=" + temp.getKey() + ", Medicine taking Time =" + temp.getValue());
                     Line.horizontalLine();
-
+                    System.out.println("Medicine No : " + i);
+                    System.out.println("Medicine Name=" + temp.getKey() + "\nMedicine taking Time =" + temp.getValue());
+                    Line.horizontalLine();
+                    i++;
                 }
                 return true;
             } else {

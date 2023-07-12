@@ -36,11 +36,12 @@ public class PatientList {
         p1.setEmail("pa1@gmail.com");
         p1.setPassword("pa1@123");
         p1.setPid(1);
-
+        list.add(p1);
         Patient p2 = new Patient();
         p2.setEmail("pa2@gmail.com");
         p2.setPassword("pa2@123");
         p2.setPid(2);
+        list.add(p2);
 
     }
 
